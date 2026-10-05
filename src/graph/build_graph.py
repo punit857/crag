@@ -17,14 +17,18 @@ timing_logger = logging.getLogger("crag_api")
 
 
 def timed(name: str, fn):
-    """Logs wall-clock time per node. Does not touch state or the execution trace."""
+    """Logs wall-clock time per node and records it in the state's node_timings."""
     @functools.wraps(fn)
     def wrapper(state):
         t0 = time.perf_counter()
         try:
-            return fn(state)
+            result = fn(state)
         finally:
-            timing_logger.info(f"[timing] node={name} {time.perf_counter() - t0:.2f}s")
+            elapsed = time.perf_counter() - t0
+            timing_logger.info(f"[timing] node={name} {elapsed:.2f}s")
+        out = dict(result)
+        out["node_timings"] = [{"node": name, "seconds": round(elapsed, 2)}]
+        return out
     return wrapper
 
 

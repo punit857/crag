@@ -17,3 +17,4 @@ class CRAGState(TypedDict):
     
     # Observability
     execution_trace: Annotated[List[str], operator.add]
+    node_timings: Annotated[List[Dict[str, Any]], operator.add]

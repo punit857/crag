@@ -106,6 +106,7 @@ class QueryResponse(BaseModel):
     execution_trace: List[str]
     latency_seconds: float
     cached: bool = False
+    node_timings: List[Dict[str, Any]] = []
 
 
 class ErrorResponse(BaseModel):
@@ -164,6 +165,7 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
         "generation": "",
         "grounded": False,
         "execution_trace": [],
+        "node_timings": [],
     }
 
     try:
@@ -195,6 +197,7 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
         web_search_used=final_state.get("web_search_iterations", 0) > 0,
         execution_trace=final_state.get("execution_trace", []),
         latency_seconds=round(latency, 2),
+        node_timings=final_state.get("node_timings", []),
     )
 
     if response.answer.strip():  # never cache empty answers
