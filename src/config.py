@@ -36,6 +36,14 @@ class Settings(BaseSettings):
     retry_max_attempts: int = 3
     retry_backoff_seconds: float = 2.0
 
+        # Redis cache (Phase 6)
+    cache_enabled: bool = True
+    redis_host: str = "localhost"
+    redis_port: int = 6379
+    cache_ttl_seconds: int = 86400        # local-only answers: 24h
+    cache_ttl_web_seconds: int = 3600     # answers that used live web search: 1h
+    cache_version: str = "v1"             # bump when you re-ingest or change prompts/models
+    
     # Fallback-trigger configuration (Phase 3) — defaults are placeholders;
     # update after reviewing results/grader_comparison.md.
     fallback_trigger_method: str = "threshold"

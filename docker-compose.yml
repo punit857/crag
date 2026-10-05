@@ -10,11 +10,25 @@ services:
     mem_limit: 1g
     restart: unless-stopped
 
+  redis:
+    image: redis:7-alpine
+    container_name: crag_redis
+    command: ["redis-server", "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru", "--save", ""]
+    ports:
+      - "127.0.0.1:6379:6379"
+    mem_limit: 128m
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
   api:
     build: .
     container_name: crag_api
     depends_on:
       - qdrant
+      - redis
     ports:
       - "127.0.0.1:8000:8000"
     env_file:
@@ -24,6 +38,7 @@ services:
       QDRANT_HOST: qdrant
       QDRANT_PORT: "6333"
       FASTEMBED_CACHE_PATH: /models
+      REDIS_HOST: redis
     volumes:
       - fastembed_cache:/models
     mem_limit: 3g

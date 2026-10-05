@@ -22,6 +22,7 @@ from pydantic import BaseModel, Field, field_validator
 from src.config import config
 from src.graph.build_graph import build_crag_graph
 from src.graph.nodes import retriever
+from src.cache import make_key, get_cached, set_cached
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("crag_api")
@@ -85,7 +86,9 @@ class QueryRequest(BaseModel):
     def query_not_blank(cls, v: str) -> str:
         if not v.strip():
             raise ValueError("query cannot be empty or whitespace-only")
+         
         return v.strip()
+        
 
 
 class SourceInfo(BaseModel):
@@ -101,6 +104,7 @@ class QueryResponse(BaseModel):
     web_search_used: bool
     execution_trace: List[str]
     latency_seconds: float
+    cached: bool = False
 
 
 class ErrorResponse(BaseModel):
@@ -126,6 +130,13 @@ def query(req: QueryRequest) -> QueryResponse:
 
     logger.info(f"Query received: {req.query[:100]}...")
     start = time.perf_counter()
+    cache_key = make_key(req.query)
+    hit = get_cached(cache_key)
+    if hit is not None:
+        hit["cached"] = True
+        hit["latency_seconds"] = round(time.perf_counter() - start, 3)
+        logger.info(f"Cache HIT in {hit['latency_seconds']}s")
+        return QueryResponse(**hit)
 
     initial_state: Dict[str, Any] = {
         "query": req.query,
@@ -169,5 +180,8 @@ def query(req: QueryRequest) -> QueryResponse:
         latency_seconds=round(latency, 2),
     )
 
+    if response.answer.strip():  # never cache empty answers
+        set_cached(cache_key, response.model_dump(), response.web_search_used)
+    
     logger.info(f"Query completed in {latency:.1f}s, web_used={response.web_search_used}")
     return response
