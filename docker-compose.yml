@@ -39,6 +39,7 @@ services:
       QDRANT_PORT: "6333"
       FASTEMBED_CACHE_PATH: /models
       REDIS_HOST: redis
+      
     volumes:
       - fastembed_cache:/models
     mem_limit: 3g

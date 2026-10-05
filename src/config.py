@@ -43,6 +43,9 @@ class Settings(BaseSettings):
     cache_ttl_seconds: int = 86400        # local-only answers: 24h
     cache_ttl_web_seconds: int = 3600     # answers that used live web search: 1h
     cache_version: str = "v1"             # bump when you re-ingest or change prompts/models
+    # Rate limiting (Phase 6) - placeholder values, tune after measuring tokens per query
+    rate_limit_per_minute: int = 5        # pipeline runs per IP per minute (cache hits are free)
+    rate_limit_daily_global: int = 60     # pipeline runs per UTC day across all users
     
     # Fallback-trigger configuration (Phase 3) — defaults are placeholders;
     # update after reviewing results/grader_comparison.md.
