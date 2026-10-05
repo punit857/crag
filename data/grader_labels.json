@@ -1,0 +1,398 @@
+[
+  {
+    "query": "In the context of the industrial assessment center technical guidance, what energy or operational savings are achieved regarding save energy your?",
+    "chunk_text": "Save Energy Now in Your Steam Systems Steam systems account for about 30% of the total energy used in industrial applications for product output. These systems can be indispensable in delivering the energy needed for process heating, pressure control, mechanical drives, separation of components, and...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, what energy or operational savings are achieved regarding save energy your?",
+    "chunk_text": "11% to 18% by using energy-efficient technologies and practices. Thus, there is great potential for savings. ITP software tools such as the Pumping System Assessment Tool (PSAT), AirMaster+, and the Fan System Assessment Tool (FSAT) can uncover good opportunities for energy savings and enhanced ener...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, what energy or operational savings are achieved regarding save energy your?",
+    "chunk_text": "Developing a Baseline The IAC and in-house maintenance team\u2019s first step was to baseline the system\u2019s demand-side air requirements to determine the system\u2019s actual efficiency. The site\u2019s original compressed air system scheme consisted of two Ingersoll Rand air compressors, located in Buildings 1 and...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, what specific technical parameter or guidance applies to energy efficient technologies?",
+    "chunk_text": "11% to 18% by using energy-efficient technologies and practices. Thus, there is great potential for savings. ITP software tools such as the Pumping System Assessment Tool (PSAT), AirMaster+, and the Fan System Assessment Tool (FSAT) can uncover good opportunities for energy savings and enhanced ener...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, what specific technical parameter or guidance applies to energy efficient technologies?",
+    "chunk_text": "Save Energy Now in Your Steam Systems Steam systems account for about 30% of the total energy used in industrial applications for product output. These systems can be indispensable in delivering the energy needed for process heating, pressure control, mechanical drives, separation of components, and...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, what specific technical parameter or guidance applies to energy efficient technologies?",
+    "chunk_text": "Because the project reduced the compressed air capacity and output required to serve the end uses, the plant achieves annual compressed air energy savings of 242,000kWh ($22,000). Furthermore, the foundry\u2019s maintenance costs have declined by$2,200 annually because the new compressor is less maintena...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what key operating requirement or maintenance practice is specified for because severe vibrationproblem?",
+    "chunk_text": "BENEFITS \u2022Saves 175,000 kilowatt-hours (kWh) annually \u2022Increases equipment life \u2022Improves productivity \u2022Saves $6,000 in annual energy costs \u2022Reduces annual maintenance costs by $10,000 APPLICATIONS Fan systems are widespread and can consume a significant portion ofthe electricity used in industrial ...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what key operating requirement or maintenance practice is specified for because severe vibrationproblem?",
+    "chunk_text": "commonly used for the construction of highways, bridges, commercial and industrial complexes, residential homes, and other structures. The Durkee plant\u2019s fan system is important for the plant\u2019s production process because it serves the baghouse in the plant\u2019s ball mill where rocks are pulverized into...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what key operating requirement or maintenance practice is specified for because severe vibrationproblem?",
+    "chunk_text": "Compressed air systems: System Efficiency Improvements Speed Controls Total Specialized systems: Total Total System Improvements 13,248 2,276 15,524 5,259 60,579 2.3% 0.4% 2.7% 0.9% 10.5% Total Potential Savings 85,157 14.8% Motor System Energy Use and Savings is Highly Concentrated in 10 Industries...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, how does implementing proper technical measures affect efficiency in bestpractices emphasizes plant?",
+    "chunk_text": "BestPractices is part of the Office of Industrial Technologies (OIT\u2019s) Industries of the Future strategy, which helps the country\u2019s most energy-intensive industries improve their competitiveness.BestPractices brings together emergingtechnologies and best energy managementpractices to help companies ...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, how does implementing proper technical measures affect efficiency in bestpractices emphasizes plant?",
+    "chunk_text": "BENEFITS \u2022Saves 175,000 kilowatt-hours (kWh) annually \u2022Increases equipment life \u2022Improves productivity \u2022Saves $6,000 in annual energy costs \u2022Reduces annual maintenance costs by $10,000 APPLICATIONS Fan systems are widespread and can consume a significant portion ofthe electricity used in industrial ...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, how does implementing proper technical measures affect efficiency in bestpractices emphasizes plant?",
+    "chunk_text": "Energy Tips \u2013 Compressed Air Compressed Air Tip Sheet #11 \u2022 August 2004 Industrial Technologies Program Suggested Actions \u2022 Review the compressed air applications to determine which ones are valid high-pressure and which ones can operate at lower pressures. The ones that can operate at low pressure ...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial pumping system, what energy or operational savings are achieved regarding energy tips pumping?",
+    "chunk_text": "Energy Tips \u2013 Pumping Systems Industrial Technologies Program Pumping Systems Tip Sheet #6 \u2022 October 2005 Match Pumps to System Requirements An industrial facility can reduce the energy costs associated with its pumping systems, and save both energy and money, in many ways. They include reducing the...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial pumping system, what energy or operational savings are achieved regarding energy tips pumping?",
+    "chunk_text": "About DOE\u2019s Industrial Technologies Program The Industrial Technologies Program, through partnerships with industry, government, and non-governmental organizations, develops and delivers advanced energy effi ciency, renewable energy, and pollution prevention technologies for industrial applications....",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial pumping system, what energy or operational savings are achieved regarding energy tips pumping?",
+    "chunk_text": "that support a systems approach at the corporate and plant level will be the key to achieving large scale energy efficiency improvement in manufacturing motor systems. Figure 2 - Breakout of Manufacturing Motor System Savings Targeting the Opportunities As mentioned, Motor Challenge is targeting the...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to include only facilities?",
+    "chunk_text": "Compressed air systems: System Efficiency Improvements Speed Controls Total Specialized systems: Total Total System Improvements 13,248 2,276 15,524 5,259 60,579 2.3% 0.4% 2.7% 0.9% 10.5% Total Potential Savings 85,157 14.8% Motor System Energy Use and Savings is Highly Concentrated in 10 Industries...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to include only facilities?",
+    "chunk_text": "U.S. Department of Energy - Energy Efficiency and Renewable Energy Advanced Manufacturing Office A Glimpse at What's Between the Covers of the Market Assessment Industrial Motor Systems are the Largest Single Electrical End Use In 1994, motor systems used only for production processes consumed 679 b...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to include only facilities?",
+    "chunk_text": "Most importantly, Motor Challenge will develop its strategy so as to add value to the Industries of the Future portfolio of emerging technology, technical information and tools so assist U.S. industry to be more energy efficient and competitive with reduced emissions and waste released to the enviro...",
+    "heuristic_label": "INCORRECT",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the compressed air system, what specific technical parameter or guidance applies to energy tips compressed?",
+    "chunk_text": "Energy Tips \u2013 Compressed Air Compressed Air Tip Sheet #10 \u2022 August 2004 Industrial Technologies Program Suggested Actions \u2022 Review compressed air end uses and determine the required level of air pressure. \u2022 Review the compressed air end uses\u2019 original configurations to determine whether manufacturin...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the compressed air system, what specific technical parameter or guidance applies to energy tips compressed?",
+    "chunk_text": "Energy Tips \u2013 Compressed Air Compressed Air Tip Sheet #2 \u2022 August 2004 Industrial Technologies Program For additional information on industrial energy efficiency measures, contact the EERE Information Center at 1-877-337-3463 or visit the BestPractices Web site at www.eere.energy.gov/industry/bestpr...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the compressed air system, what specific technical parameter or guidance applies to energy tips compressed?",
+    "chunk_text": "Save Energy Now in Your Motor-Driven Systems Motor-driven equipment\u2014such as pumps, air compressors, and fans\u2014consumes about 16% of all the energy used in U.S. industrial applications. Industry as a whole consumes more than 700 billion kWh and spends more than $30 billion annually for electricity ded...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, how does implementing proper technical measures affect efficiency in bestpractices brings together?",
+    "chunk_text": "BestPractices is part of the Industrial Technologies Program, and supports DOE\u2019s strategy to help the country\u2019s most energy-intensive industries improve their competitiveness. BestPractices brings together emerging technologies and energy-management best practices to help companies begin improving e...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, how does implementing proper technical measures affect efficiency in bestpractices brings together?",
+    "chunk_text": "Save Energy Now in Your Steam Systems Steam systems account for about 30% of the total energy used in industrial applications for product output. These systems can be indispensable in delivering the energy needed for process heating, pressure control, mechanical drives, separation of components, and...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial assessment center technical guidance, how does implementing proper technical measures affect efficiency in bestpractices brings together?",
+    "chunk_text": "About DOE\u2019s Industrial Technologies Program The Industrial Technologies Program, through partnerships with industry, government, and non-governmental organizations, develops and delivers advanced energy effi ciency, renewable energy, and pollution prevention technologies for industrial applications....",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the steam distribution system, what specific technical parameter or guidance applies to advanced manufacturing officeprinted?",
+    "chunk_text": "ADVANCED MANUFACTURING OFFICEPrinted with a renewable-source ink on paper containing at least 50% wastepaper, including 10% post consumer waste.The total annual energy savings are strongly dependent upon the facility energy cost and the hours per year of feedwater pump operation. Annual energy savin...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the steam distribution system, what specific technical parameter or guidance applies to advanced manufacturing officeprinted?",
+    "chunk_text": "ADVANCED MANUFACTURING OFFICE Energy Tips: STEAM Steam Tip Sheet #21Consider Steam Turbine Drives for Rotating Equipment Steam turbines are well suited as prime movers for driving boiler feedwater pumps, forced or induced-draft fans, blowers, air compressors, and other rotating equipment. This servi...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the steam distribution system, what specific technical parameter or guidance applies to advanced manufacturing officeprinted?",
+    "chunk_text": "Compressed air systems: System Efficiency Improvements Speed Controls Total Specialized systems: Total Total System Improvements 13,248 2,276 15,524 5,259 60,579 2.3% 0.4% 2.7% 0.9% 10.5% Total Potential Savings 85,157 14.8% Motor System Energy Use and Savings is Highly Concentrated in 10 Industries...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in formally recognized plant?",
+    "chunk_text": "INDUSTRIAL TECHNOLOGIES PROGRAM Conclusion The decision to implement a comprehensive, compressed air system energy-reduction strategy at the FUJIFILM Dayton, Tennessee, manufacturing facility has saved the company nearly 1,240,976 kilowatt hours since the project\u2019s initiation in 2008. Since implemen...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in formally recognized plant?",
+    "chunk_text": "FUJIFILM Hunt Chemicals U.S.A. Achieves Compressed Air System Energy-Reduction Goals with a Three-Phased Strategy In an attempt to eliminate equipment failures and downtime issues associated with the plant\u2019s compressed air system, FUJIFILM Hunt Chemicals U.S.A.\u2019s in-house maintenance team worked wit...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in formally recognized plant?",
+    "chunk_text": "that support a systems approach at the corporate and plant level will be the key to achieving large scale energy efficiency improvement in manufacturing motor systems. Figure 2 - Breakout of Manufacturing Motor System Savings Targeting the Opportunities As mentioned, Motor Challenge is targeting the...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the steam distribution system, how does implementing proper technical measures affect efficiency in steam turbine performance?",
+    "chunk_text": "ADVANCED MANUFACTURING OFFICE Energy Tips: STEAM Steam Tip Sheet #21Consider Steam Turbine Drives for Rotating Equipment Steam turbines are well suited as prime movers for driving boiler feedwater pumps, forced or induced-draft fans, blowers, air compressors, and other rotating equipment. This servi...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the steam distribution system, how does implementing proper technical measures affect efficiency in steam turbine performance?",
+    "chunk_text": "ADVANCED MANUFACTURING OFFICEPrinted with a renewable-source ink on paper containing at least 50% wastepaper, including 10% post consumer waste.The total annual energy savings are strongly dependent upon the facility energy cost and the hours per year of feedwater pump operation. Annual energy savin...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the steam distribution system, how does implementing proper technical measures affect efficiency in steam turbine performance?",
+    "chunk_text": "City of Trumbull Municipal sewage pumping31,875 44 $2,614 4.6 Nisshinbo CaliforniaTextiles 1,600,000 59 $100,954 1.3 Greenville TubingStainless steel tube fabrication148,847 34 $77,266 0.5 Alumax Primary aluminum production3,350,000 12 $103,736 0.0 OXY-USA Oil field pumping54,312 12 $5,362 0.5 City ...",
+    "heuristic_label": "INCORRECT",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to energy associated industrial?",
+    "chunk_text": "U.S. Department of Energy - Energy Efficiency and Renewable Energy Advanced Manufacturing Office A Glimpse at What's Between the Covers of the Market Assessment Industrial Motor Systems are the Largest Single Electrical End Use In 1994, motor systems used only for production processes consumed 679 b...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to energy associated industrial?",
+    "chunk_text": "- Equalize flow over production cycle using holding tanks. - Eliminate bypass loops and other unnecessary flows. - Increase piping diameter to reduce friction. - Reduce safety margins in design system capacity. Match Pump Size to Load - Install parallel systems for highly variable loads. Reduce or C...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to energy associated industrial?",
+    "chunk_text": "About DOE\u2019s Industrial Technologies Program The Industrial Technologies Program, through partnerships with industry, government, and non-governmental organizations, develops and delivers advanced energy effi ciency, renewable energy, and pollution prevention technologies for industrial applications....",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, how does implementing proper technical measures affect efficiency in project involved retrofitting?",
+    "chunk_text": "U.S. Department of Energy Energy Efficiency and Renewable Energy Bringing you a prosperous future where energy is clean, abundant, reliable, and affordableTechni-Cast: Foundry Saves Energy with Compressed Air System Retrofit Summary In 2002, Techni-Cast implemented a project on its compressed air sy...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, how does implementing proper technical measures affect efficiency in project involved retrofitting?",
+    "chunk_text": "BestPractices Case Study Project Implementation The project\u2019s implementation closely followed the recommendations made in Accurate Air Engineer- ing\u2019s audit report. The report showed that a 50-hp compressor could satisfy the plant\u2019s normal demandof 200 scfm, so the plant installed a new, 50-hp rotar...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, how does implementing proper technical measures affect efficiency in project involved retrofitting?",
+    "chunk_text": "About DOE\u2019s Industrial Technologies Program The Industrial Technologies Program, through partnerships with industry, government, and non-governmental organizations, develops and delivers advanced energy effi ciency, renewable energy, and pollution prevention technologies for industrial applications....",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to because project reduced?",
+    "chunk_text": "Because the project reduced the compressed air capacity and output required to serve the end uses, the plant achieves annual compressed air energy savings of 242,000kWh ($22,000). Furthermore, the foundry\u2019s maintenance costs have declined by$2,200 annually because the new compressor is less maintena...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to because project reduced?",
+    "chunk_text": "U.S. Department of Energy Energy Efficiency and Renewable Energy Bringing you a prosperous future where energy is clean, abundant, reliable, and affordableTechni-Cast: Foundry Saves Energy with Compressed Air System Retrofit Summary In 2002, Techni-Cast implemented a project on its compressed air sy...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to because project reduced?",
+    "chunk_text": "FUJIFILM Hunt Chemicals U.S.A. Achieves Compressed Air System Energy-Reduction Goals with a Three-Phased Strategy In an attempt to eliminate equipment failures and downtime issues associated with the plant\u2019s compressed air system, FUJIFILM Hunt Chemicals U.S.A.\u2019s in-house maintenance team worked wit...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the compressed air system, what energy or operational savings are achieved regarding plant took several?",
+    "chunk_text": "Energy Tips \u2013 Compressed Air Compressed Air Tip Sheet #2 \u2022 August 2004 Industrial Technologies Program For additional information on industrial energy efficiency measures, contact the EERE Information Center at 1-877-337-3463 or visit the BestPractices Web site at www.eere.energy.gov/industry/bestpr...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the compressed air system, what energy or operational savings are achieved regarding plant took several?",
+    "chunk_text": "BestPractices is part of the Industrial Technologies Program Industries of the Future strategy, which helps the country\u2019s most energy-intensive industries improve their competitiveness. BestPractices brings together emerging technologies and best energy-management practices to help companies begin i...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the compressed air system, what energy or operational savings are achieved regarding plant took several?",
+    "chunk_text": "ADVANCED MANUFACTURING OFFICEPrinted with a renewable-source ink on paper containing at least 50% wastepaper, including 10% post consumer waste.The total annual energy savings are strongly dependent upon the facility energy cost and the hours per year of feedwater pump operation. Annual energy savin...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to both units operating?",
+    "chunk_text": "Industrial Technologies Program Project Overview Plant personnel worked with Accurate Air Engineering of Bakersfield, California, which is a U.S. Department of Energy Allied Partner, to perform a system-level review of the compressed air system.The first problem the review identified was the compres...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to both units operating?",
+    "chunk_text": "BestPractices Case Study Project Implementation The project\u2019s implementation closely followed the recommendations made in Accurate Air Engineer- ing\u2019s audit report. The report showed that a 50-hp compressor could satisfy the plant\u2019s normal demandof 200 scfm, so the plant installed a new, 50-hp rotar...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to both units operating?",
+    "chunk_text": "About DOE\u2019s Industrial Technologies Program The Industrial Technologies Program, through partnerships with industry, government, and non-governmental organizations, develops and delivers advanced energy effi ciency, renewable energy, and pollution prevention technologies for industrial applications....",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what energy or operational savings are achieved regarding increase piping diameter?",
+    "chunk_text": "- Equalize flow over production cycle using holding tanks. - Eliminate bypass loops and other unnecessary flows. - Increase piping diameter to reduce friction. - Reduce safety margins in design system capacity. Match Pump Size to Load - Install parallel systems for highly variable loads. Reduce or C...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what energy or operational savings are achieved regarding increase piping diameter?",
+    "chunk_text": "U.S. Department of Energy - Energy Efficiency and Renewable Energy Advanced Manufacturing Office A Glimpse at What's Between the Covers of the Market Assessment Industrial Motor Systems are the Largest Single Electrical End Use In 1994, motor systems used only for production processes consumed 679 b...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the industrial equipment market assessment, what energy or operational savings are achieved regarding increase piping diameter?",
+    "chunk_text": "Project Results The installation of the ASD on the fan system eliminated the vibration problems that the system was experiencing and led to energy and maintenance savings for the Durkee plant. Once the ASDwas in place, the dampers were no longer needed to control the fan system because the ASDcould ...",
+    "heuristic_label": "INCORRECT",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to prior project baghouse?",
+    "chunk_text": "commonly used for the construction of highways, bridges, commercial and industrial complexes, residential homes, and other structures. The Durkee plant\u2019s fan system is important for the plant\u2019s production process because it serves the baghouse in the plant\u2019s ball mill where rocks are pulverized into...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to prior project baghouse?",
+    "chunk_text": "BENEFITS \u2022Saves 175,000 kilowatt-hours (kWh) annually \u2022Increases equipment life \u2022Improves productivity \u2022Saves $6,000 in annual energy costs \u2022Reduces annual maintenance costs by $10,000 APPLICATIONS Fan systems are widespread and can consume a significant portion ofthe electricity used in industrial ...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to prior project baghouse?",
+    "chunk_text": "BestPractices is part of the Industrial Technologies Program Industries of the Future strategy, which helps the country\u2019s most energy-intensive industries improve their competitiveness. BestPractices brings together emerging technologies and best energy-management practices to help companies begin i...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in developing baseline house?",
+    "chunk_text": "Developing a Baseline The IAC and in-house maintenance team\u2019s first step was to baseline the system\u2019s demand-side air requirements to determine the system\u2019s actual efficiency. The site\u2019s original compressed air system scheme consisted of two Ingersoll Rand air compressors, located in Buildings 1 and...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in developing baseline house?",
+    "chunk_text": "INDUSTRIAL TECHNOLOGIES PROGRAM Conclusion The decision to implement a comprehensive, compressed air system energy-reduction strategy at the FUJIFILM Dayton, Tennessee, manufacturing facility has saved the company nearly 1,240,976 kilowatt hours since the project\u2019s initiation in 2008. Since implemen...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in developing baseline house?",
+    "chunk_text": "Energy Tips \u2013 Compressed Air Compressed Air Tip Sheet #11 \u2022 August 2004 Industrial Technologies Program Suggested Actions \u2022 Review the compressed air applications to determine which ones are valid high-pressure and which ones can operate at lower pressures. The ones that can operate at low pressure ...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the chilled water plant system, what energy or operational savings are achieved regarding following assessment team?",
+    "chunk_text": "FUJIFILM Hunt Chemicals U.S.A. Achieves Compressed Air System Energy-Reduction Goals with a Three-Phased Strategy In an attempt to eliminate equipment failures and downtime issues associated with the plant\u2019s compressed air system, FUJIFILM Hunt Chemicals U.S.A.\u2019s in-house maintenance team worked wit...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the chilled water plant system, what energy or operational savings are achieved regarding following assessment team?",
+    "chunk_text": "INDUSTRIAL TECHNOLOGIES PROGRAM Conclusion The decision to implement a comprehensive, compressed air system energy-reduction strategy at the FUJIFILM Dayton, Tennessee, manufacturing facility has saved the company nearly 1,240,976 kilowatt hours since the project\u2019s initiation in 2008. Since implemen...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the chilled water plant system, what energy or operational savings are achieved regarding following assessment team?",
+    "chunk_text": "BestPractices is part of the Office of Industrial Technologies (OIT\u2019s) Industries of the Future strategy, which helps the country\u2019s most energy-intensive industries improve their competitiveness.BestPractices brings together emergingtechnologies and best energy managementpractices to help companies ...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to vibration level caused?",
+    "chunk_text": "Project Results The installation of the ASD on the fan system eliminated the vibration problems that the system was experiencing and led to energy and maintenance savings for the Durkee plant. Once the ASDwas in place, the dampers were no longer needed to control the fan system because the ASDcould ...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to vibration level caused?",
+    "chunk_text": "BestPractices is part of the Office of Industrial Technologies (OIT\u2019s) Industries of the Future strategy, which helps the country\u2019s most energy-intensive industries improve their competitiveness.BestPractices brings together emergingtechnologies and best energy managementpractices to help companies ...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to vibration level caused?",
+    "chunk_text": "Energy Tips \u2013 Pumping Systems Industrial Technologies Program Pumping Systems Tip Sheet #6 \u2022 October 2005 Match Pumps to System Requirements An industrial facility can reduce the energy costs associated with its pumping systems, and save both energy and money, in many ways. They include reducing the...",
+    "heuristic_label": "INCORRECT",
+    "match_type": "diff_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to company retained compressor?",
+    "chunk_text": "BestPractices Case Study Project Implementation The project\u2019s implementation closely followed the recommendations made in Accurate Air Engineer- ing\u2019s audit report. The report showed that a 50-hp compressor could satisfy the plant\u2019s normal demandof 200 scfm, so the plant installed a new, 50-hp rotar...",
+    "heuristic_label": "CORRECT",
+    "match_type": "positive_target"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to company retained compressor?",
+    "chunk_text": "U.S. Department of Energy Energy Efficiency and Renewable Energy Bringing you a prosperous future where energy is clean, abundant, reliable, and affordableTechni-Cast: Foundry Saves Energy with Compressed Air System Retrofit Summary In 2002, Techni-Cast implemented a project on its compressed air sy...",
+    "heuristic_label": "AMBIGUOUS",
+    "match_type": "same_system_mismatch"
+  },
+  {
+    "query": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to company retained compressor?",
+    "chunk_text": "Industries of the Future (IOF) sectors account for 53% of total industrial motor system energy consumption. The initial target sectors of Motor Challenge\u2014Paper and Allied Products, Steel, Mining, and Water Supply/Wastewater\u2014account for 36% of total industrial motor system energy consumption. Concent...",
+    "heuristic_label": "INCORRECT",
+    "match_type": "diff_system_mismatch"
+  }
+]

@@ -1,0 +1,41 @@
+# Secrets — never commit
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Local vector DB (large binary, regenerable via ingestion.py)
+local_qdrant_db/
+
+# Model caches (large, regenerable)
+.cache/
+**/fastembed_cache/
+
+# Raw source PDFs — large; corpus is re-fetchable via scripts/fetch_corpus.py
+# (uncomment if you don't want the actual PDFs in git; keep commented if you do)
+# data/raw_pdfs/*.pdf
+
+# Eval artifacts that are large/regenerable (keep final reports, drop raw dumps)
+results/final_eval_raw*.json
+results/source_pages_dump.txt
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Logs
+*.log
+# Archived files
+_archive/
+data/tmp/
+
+# stale local copies
+archive/
+scripts/run_final_evaluation.backup.py

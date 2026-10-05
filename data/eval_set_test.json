@@ -1,0 +1,164 @@
+[
+  {
+    "question": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to because project reduced?",
+    "ground_truth": "Because the project reduced the compressed air capacity and output required to serve the end uses, the plant achieves annual compressed air energy savings of 242,000kWh ($22,000).",
+    "source_doc": "metal_cs_technicast.pdf",
+    "source_page": 4,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_000"
+  },
+  {
+    "question": "What is the standard efficiency rating for the fan?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": true,
+    "id": "test_001"
+  },
+  {
+    "question": "In the context of the compressed air system, what energy or operational savings are achieved regarding plant took several?",
+    "ground_truth": "The plant took several action steps identified in the table to eliminate or reduce these inappropriate uses.",
+    "source_doc": "compressed_air2.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_002"
+  },
+  {
+    "question": "What are the standard inspection intervals and blade tip clearance limits for commercial aviation turbofan engines?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Aviation turbofan maintenance and inspection protocols are outside the scope of local DOE industrial guidance.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "test_003"
+  },
+  {
+    "question": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to both units operating?",
+    "ground_truth": "Both the 100- and 50-hp units were operating in standard modulation, meaning that they both operated at partload at the same time.",
+    "source_doc": "metal_cs_technicast.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_004"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of chilled water plant system versus industrial assessment center technical guidance?",
+    "ground_truth": "For chilled water plant system (fujifilm_case_study.pdf, p.3): In May 2010, ITP formally recognized the plant\u2019s efficiency achievements with an Energy Champion Award. For industrial assessment center technical guidance (39156.pdf, p.2): BestPractices brings together emerging technologies and energy-management best practices to help companies begin improving energy efficiency, environmental performance, and productivity right now.",
+    "source_doc": "fujifilm_case_study.pdf, 39156.pdf",
+    "source_page": "p.3, p.2",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_005"
+  },
+  {
+    "question": "How much energy does installing a variable frequency drive save?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": true,
+    "id": "test_006"
+  },
+  {
+    "question": "In the context of the industrial equipment market assessment, what energy or operational savings are achieved regarding increase piping diameter?",
+    "ground_truth": "- Increase piping diameter to reduce friction.",
+    "source_doc": "market_assessment_glimpse.pdf",
+    "source_page": 3,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_007"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of cement kiln exhaust fan system versus metal foundry furnace heat recovery system?",
+    "ground_truth": "For cement kiln exhaust fan system (mi_cs_ashgrove.pdf, p.2): Prior to the project, the baghouse\u2019s 125-hp centrifugal fan system, rated for 30,000 atmospheric cubic feet per minute (acfm), was belt-driven through sheaves. For metal foundry furnace heat recovery system (metal_cs_technicast.pdf, p.4): Because the project reduced the compressed air capacity and output required to serve the end uses, the plant achieves annual compressed air energy savings of 242,000kWh ($22,000).",
+    "source_doc": "mi_cs_ashgrove.pdf, metal_cs_technicast.pdf",
+    "source_page": "p.2, p.4",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_008"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of steam distribution system versus cement kiln exhaust fan system?",
+    "ground_truth": "For steam distribution system (steam21_rotating_equip.pdf, p.2): ADVANCED MANUFACTURING OFFICEPrinted with a renewable-source ink on paper containing at least 50% wastepaper, including 10% post consumer waste.The total annual energy savings are strongly dependent upon the facility energy cost and the hours per year of feedwater pump operation. For cement kiln exhaust fan system (mi_cs_ashgrove.pdf, p.2): Prior to the project, the baghouse\u2019s 125-hp centrifugal fan system, rated for 30,000 atmospheric cubic feet per minute (acfm), was belt-driven through sheaves.",
+    "source_doc": "steam21_rotating_equip.pdf, mi_cs_ashgrove.pdf",
+    "source_page": "p.2, p.2",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_009"
+  },
+  {
+    "question": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to prior project baghouse?",
+    "ground_truth": "Prior to the project, the baghouse\u2019s 125-hp centrifugal fan system, rated for 30,000 atmospheric cubic feet per minute (acfm), was belt-driven through sheaves.",
+    "source_doc": "mi_cs_ashgrove.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_010"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of metal foundry furnace heat recovery system versus industrial equipment market assessment?",
+    "ground_truth": "For metal foundry furnace heat recovery system (metal_cs_technicast.pdf, p.3): The company retained the 100-hp compressor as a back-up unit. For industrial equipment market assessment (market_assessment_glimpse.pdf, p.1): Add the energy associated with industrial heating, ventilation, and air conditioning systems, and the total jumps to 747 billion kWh or 25% of all electric sales.",
+    "source_doc": "metal_cs_technicast.pdf, market_assessment_glimpse.pdf",
+    "source_page": "p.3, p.1",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_011"
+  },
+  {
+    "question": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in developing baseline house?",
+    "ground_truth": "Developing a Baseline The IAC and in-house maintenance team\u2019s first step was to baseline the system\u2019s demand-side air requirements to determine the system\u2019s actual efficiency.",
+    "source_doc": "fujifilm_case_study.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_012"
+  },
+  {
+    "question": "What are the transformer oil dissolved gas analysis (DGA) thresholds for detecting thermal faulting in substations?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Electrical substation transformer oil chemical analysis is outside the scope of local equipment efficiency guidance.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "test_013"
+  },
+  {
+    "question": "In the context of the chilled water plant system, what energy or operational savings are achieved regarding following assessment team?",
+    "ground_truth": "Following the assessment, the team formulated an implementation plan that would increase the system\u2019s reliability, reduce system maintenance costs, reduce the facility\u2019s overall energy use, and eliminate the use of nitrogen when compressed air systems are down.",
+    "source_doc": "fujifilm_case_study.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_014"
+  },
+  {
+    "question": "In the context of the cement kiln exhaust fan system, what specific technical parameter or guidance applies to vibration level caused?",
+    "ground_truth": "The vibration level caused by the dampers wasreduced from 0.5 inches per second to 0.05 inches per second.",
+    "source_doc": "mi_cs_ashgrove.pdf",
+    "source_page": 3,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_015"
+  },
+  {
+    "question": "In the context of the metal foundry furnace heat recovery system, what specific technical parameter or guidance applies to company retained compressor?",
+    "ground_truth": "The company retained the 100-hp compressor as a back-up unit.",
+    "source_doc": "metal_cs_technicast.pdf",
+    "source_page": 3,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_016"
+  },
+  {
+    "question": "How do you calibrate primary coolant loop pressure sensors in a nuclear pressurized water reactor?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Nuclear reactor coolant pressure sensor calibration is not covered in local DOE industrial tip sheets.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "test_017"
+  }
+]

@@ -1,0 +1,164 @@
+[
+  {
+    "question": "What flow rate and pressure do the compressed air applications at the Techni-Cast foundry in Southgate, California require to operate reliably?",
+    "ground_truth": "Between 200 and 400 standard cubic feet per minute (scfm) of compressed air at 90 psig.",
+    "source_doc": "metal_cs_technicast.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_000"
+  },
+  {
+    "question": "What is the standard efficiency rating for the fan?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": null,
+    "id": "test_001"
+  },
+  {
+    "question": "In the automobile assembly plant example in Compressed Air Tip Sheet #2, what annual savings were calculated from eliminating the inappropriate compressed air uses, before subtracting the electricity costs of the replacement equipment?",
+    "ground_truth": "$102,600 per year.",
+    "source_doc": "compressed_air2.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_002"
+  },
+  {
+    "question": "What are the standard inspection intervals and blade tip clearance limits for commercial aviation turbofan engines?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Aviation turbofan maintenance and inspection protocols are outside the scope of local DOE industrial guidance.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "test_003"
+  },
+  {
+    "question": "In Steam Tip Sheet #21's example, what steam flow is needed for a 300-hp steam turbine with a steam rate of 26 lb/hp-hr to replace a fully loaded 300-hp feedwater pump drive motor?",
+    "ground_truth": "7,800 lb/hr (26 lb/hp-hr x 300 hp).",
+    "source_doc": "steam21_rotating_equip.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_004"
+  },
+  {
+    "question": "What share of total industrial energy use do steam systems account for, compared with motor-driven equipment such as pumps, air compressors, and fans?",
+    "ground_truth": "Steam systems account for about 30% of total industrial energy use, versus about 16% for motor-driven equipment (pumps, air compressors, fans).",
+    "source_doc": "39156.pdf, 39157.pdf",
+    "source_page": "p.1, p.1",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_005"
+  },
+  {
+    "question": "How much energy does installing a variable frequency drive save?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": null,
+    "id": "test_006"
+  },
+  {
+    "question": "In the Market Assessment overview, what range of pump-system energy savings (as a percent of system energy) is listed for increasing piping diameter to reduce friction?",
+    "ground_truth": "5%-20% of system energy.",
+    "source_doc": "market_assessment_glimpse.pdf",
+    "source_page": 3,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_007"
+  },
+  {
+    "question": "Which project achieved larger annual maintenance savings, the Ash Grove Cement fan ASD retrofit or the Techni-Cast compressed air retrofit, and what were the amounts?",
+    "ground_truth": "Ash Grove saved $10,000 annually in maintenance versus $2,200 annually at Techni-Cast, so Ash Grove's savings were larger.",
+    "source_doc": "mi_cs_ashgrove.pdf, metal_cs_technicast.pdf",
+    "source_page": "p.3, p.4",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_008"
+  },
+  {
+    "question": "What share of industrial electricity consumption do DOE's market assessment overview and the full motor-driven systems market assessment paper attribute to motor-driven systems?",
+    "ground_truth": "The overview says all types of motor systems account for 69% of industrial electricity consumption; the full paper says nearly 70%.",
+    "source_doc": "market_assessment_glimpse.pdf, us_industrial_motor_driven.pdf",
+    "source_page": "p.1, p.1",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_009"
+  },
+  {
+    "question": "Before the project, what were the size and rated airflow of the baghouse fan system at Ash Grove Cement's Durkee, Oregon plant?",
+    "ground_truth": "A 125-hp centrifugal fan system rated for 30,000 acfm, belt-driven through sheaves.",
+    "source_doc": "mi_cs_ashgrove.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_010"
+  },
+  {
+    "question": "To what pressure did FUJIFILM Hunt Chemicals set its compressors, and how did Techni-Cast change its compressor discharge pressure, after their projects?",
+    "ground_truth": "FUJIFILM reduced compressor set pressure to 105 PSIG; Techni-Cast reduced discharge pressure from 120 psig to 100 psig.",
+    "source_doc": "fujifilm_case_study.pdf, metal_cs_technicast.pdf",
+    "source_page": "p.2, p.3",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "test_011"
+  },
+  {
+    "question": "In the FUJIFILM Hunt Chemicals compressed air case study, what cost reduction did the facility's data show for a 2 PSIG drop in pressure?",
+    "ground_truth": "A 2 PSIG drop in pressure resulted in a 1% reduction in cost.",
+    "source_doc": "fujifilm_case_study.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_012"
+  },
+  {
+    "question": "What are the transformer oil dissolved gas analysis (DGA) thresholds for detecting thermal faulting in substations?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Electrical substation transformer oil chemical analysis is outside the scope of local equipment efficiency guidance.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "test_013"
+  },
+  {
+    "question": "In Pumping Systems Tip Sheet #6's example of replacing one oversized 3,500-gpm chilled water pump with a 1,250-gpm pump, what annual energy and cost savings result?",
+    "ground_truth": "About 790,520 kWh per year, or about $39,525 per year at 5 cents per kWh.",
+    "source_doc": "match_pumps_to_system.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_014"
+  },
+  {
+    "question": "In the bottling plant case study in Compressed Air Tip Sheet #11, how much lower were the energy costs of the central vacuum system than those of the existing venturi vacuum devices?",
+    "ground_truth": "30% lower.",
+    "source_doc": "compressed_air11.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_015"
+  },
+  {
+    "question": "In Pumping Systems Tip Sheet #4's example, a 300-hp centrifugal pump operates at 55% efficiency but should operate at 78%. What annual energy savings result from restoring design efficiency?",
+    "ground_truth": "415,769 kWh per year (about $20,786 per year at 5 cents per kWh).",
+    "source_doc": "test_pumping_system__pumping_systemts4.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "test_016"
+  },
+  {
+    "question": "How do you calibrate primary coolant loop pressure sensors in a nuclear pressurized water reactor?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Nuclear reactor coolant pressure sensor calibration is not covered in local DOE industrial tip sheets.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "test_017"
+  }
+]

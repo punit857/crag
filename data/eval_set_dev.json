@@ -1,0 +1,281 @@
+[
+  {
+    "question": "What are the technical efficiency considerations when comparing management of industrial pumping system versus cement kiln exhaust fan system?",
+    "ground_truth": "For industrial pumping system (test_pumping_system__pumping_systemts4.pdf, p.1): Department of Energy (DOE), and efficiencies of 50% to 60% or lower are quite common. For cement kiln exhaust fan system (mi_cs_ashgrove.pdf, p.1): Because of a severe vibrationproblem, the fan system would often fail and require frequent repairs to the duct-work and adjoining machinery.",
+    "source_doc": "test_pumping_system__pumping_systemts4.pdf, mi_cs_ashgrove.pdf",
+    "source_page": "p.1, p.1",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_000"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of chilled water plant system versus electric motor drive system?",
+    "ground_truth": "For chilled water plant system (fujifilm_case_study.pdf, p.1): Following the assessment, the team formulated an implementation plan that would increase the system\u2019s reliability, reduce system maintenance costs, reduce the facility\u2019s overall energy use, and eliminate the use of nitrogen when compressed air systems are down. For electric motor drive system (us_industrial_motor_driven.pdf, p.2): This paper is an overview of the results of the market assessment which lay the groundwork to a Roadmap to Energy Savings.(2) Introduction\u2014General Characteristics of the U.S.",
+    "source_doc": "fujifilm_case_study.pdf, us_industrial_motor_driven.pdf",
+    "source_page": "p.1, p.2",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_001"
+  },
+  {
+    "question": "In the context of the industrial assessment center technical guidance, what energy or operational savings are achieved regarding save energy your?",
+    "ground_truth": "Save Energy Now in Your Steam Systems Steam systems account for about 30% of the total energy used in industrial applications for product output.",
+    "source_doc": "39156.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_002"
+  },
+  {
+    "question": "In the context of the industrial assessment center technical guidance, what specific technical parameter or guidance applies to energy efficient technologies?",
+    "ground_truth": "11% to 18% by using energy-efficient technologies and practices.",
+    "source_doc": "39157.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_003"
+  },
+  {
+    "question": "What is the most common cause of efficiency loss in the system?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": true,
+    "id": "dev_004"
+  },
+  {
+    "question": "In the context of the cement kiln exhaust fan system, what key operating requirement or maintenance practice is specified for because severe vibrationproblem?",
+    "ground_truth": "Because of a severe vibrationproblem, the fan system would often fail and require frequent repairs to the duct-work and adjoining machinery.",
+    "source_doc": "mi_cs_ashgrove.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_005"
+  },
+  {
+    "question": "How do you configure PID gains on an automated robotic welding arm to eliminate seam tracking vibration?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Automated robotic arm kinematics and PID tuning for welding are not covered in local DOE tip sheets.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "dev_006"
+  },
+  {
+    "question": "What is the maximum allowable spindle runout for high-precision CNC milling machines under ISO 1940?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. CNC machine spindle tolerances and machining precision standards are outside the local equipment corpus.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "dev_007"
+  },
+  {
+    "question": "In the context of the cement kiln exhaust fan system, how does implementing proper technical measures affect efficiency in bestpractices emphasizes plant?",
+    "ground_truth": "BestPractices emphasizes plant systems, where significant efficiency improvementsand savings can be achieved.",
+    "source_doc": "mi_cs_ashgrove.pdf",
+    "source_page": 4,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_008"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of compressed air system versus industrial assessment center technical guidance?",
+    "ground_truth": "For compressed air system (compressed_air2.pdf, p.1): The plant took several action steps identified in the table to eliminate or reduce these inappropriate uses. For industrial assessment center technical guidance (39157.pdf, p.2): 11% to 18% by using energy-efficient technologies and practices.",
+    "source_doc": "compressed_air2.pdf, 39157.pdf",
+    "source_page": "p.1, p.2",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_009"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of steam distribution system versus chilled water plant system?",
+    "ground_truth": "For steam distribution system (steam21_rotating_equip.pdf, p.2): ADVANCED MANUFACTURING OFFICEPrinted with a renewable-source ink on paper containing at least 50% wastepaper, including 10% post consumer waste.The total annual energy savings are strongly dependent upon the facility energy cost and the hours per year of feedwater pump operation. For chilled water plant system (fujifilm_case_study.pdf, p.2): Developing a Baseline The IAC and in-house maintenance team\u2019s first step was to baseline the system\u2019s demand-side air requirements to determine the system\u2019s actual efficiency.",
+    "source_doc": "steam21_rotating_equip.pdf, fujifilm_case_study.pdf",
+    "source_page": "p.2, p.2",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_010"
+  },
+  {
+    "question": "In the context of the industrial pumping system, what energy or operational savings are achieved regarding energy tips pumping?",
+    "ground_truth": "Energy Tips \u2013 Pumping Systems Industrial Technologies Program Pumping Systems Tip Sheet #6 \u2022 October 2005 Match Pumps to System Requirements An industrial facility can reduce the energy costs associated with its pumping systems, and save both energy and money, in many ways.",
+    "source_doc": "match_pumps_to_system.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_011"
+  },
+  {
+    "question": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to include only facilities?",
+    "ground_truth": "They include only 3583 facilities or 1.5% of all manufacturing plants.",
+    "source_doc": "market_assessment_glimpse.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_012"
+  },
+  {
+    "question": "In the context of the compressed air system, what specific technical parameter or guidance applies to energy tips compressed?",
+    "ground_truth": "Energy Tips \u2013 Compressed Air Compressed Air Tip Sheet #10 \u2022 August 2004 Industrial Technologies Program Suggested Actions \u2022 Review compressed air end uses and determine the required level of air pressure.",
+    "source_doc": "compressed_air10.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_013"
+  },
+  {
+    "question": "What is the recommended solar panel tilt angle and MPPT tracking configuration for commercial rooftop PV arrays?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Photovoltaic solar generation hardware and inverter configuration are outside the industrial equipment guidance corpus.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "dev_014"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of cement kiln exhaust fan system versus industrial assessment center technical guidance?",
+    "ground_truth": "For cement kiln exhaust fan system (mi_cs_ashgrove.pdf, p.2): Prior to the project, the baghouse\u2019s 125-hp centrifugal fan system, rated for 30,000 atmospheric cubic feet per minute (acfm), was belt-driven through sheaves. For industrial assessment center technical guidance (39156.pdf, p.1): Save Energy Now in Your Steam Systems Steam systems account for about 30% of the total energy used in industrial applications for product output.",
+    "source_doc": "mi_cs_ashgrove.pdf, 39156.pdf",
+    "source_page": "p.2, p.1",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_015"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of industrial equipment market assessment versus electric motor drive system?",
+    "ground_truth": "For industrial equipment market assessment (market_assessment_glimpse.pdf, p.3): - Increase piping diameter to reduce friction. For electric motor drive system (us_industrial_motor_driven.pdf, p.5): promotion of energy efficiency products and services to customers, or for end users, to achieve overall productivity gains in their manufacturing plants.",
+    "source_doc": "market_assessment_glimpse.pdf, us_industrial_motor_driven.pdf",
+    "source_page": "p.3, p.5",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_016"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of electric motor drive system versus industrial assessment center technical guidance?",
+    "ground_truth": "For electric motor drive system (us_industrial_motor_driven.pdf, p.5): promotion of energy efficiency products and services to customers, or for end users, to achieve overall productivity gains in their manufacturing plants. For industrial assessment center technical guidance (39157.pdf, p.2): 11% to 18% by using energy-efficient technologies and practices.",
+    "source_doc": "us_industrial_motor_driven.pdf, 39157.pdf",
+    "source_page": "p.5, p.2",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_017"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of metal foundry furnace heat recovery system versus electric motor drive system?",
+    "ground_truth": "For metal foundry furnace heat recovery system (metal_cs_technicast.pdf, p.1): The project involved retrofitting the compressed air system with moreappropriately sized compressors, upgrading the compressor controls, and other measures toincrease the system\u2019s efficiency. For electric motor drive system (us_industrial_motor_driven.pdf, p.4): Industries of the Future (IOF) sectors account for 53% of total industrial motor system energy consumption.",
+    "source_doc": "metal_cs_technicast.pdf, us_industrial_motor_driven.pdf",
+    "source_page": "p.1, p.4",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_018"
+  },
+  {
+    "question": "How often should the motor be inspected?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": true,
+    "id": "dev_019"
+  },
+  {
+    "question": "In the context of the industrial assessment center technical guidance, how does implementing proper technical measures affect efficiency in bestpractices brings together?",
+    "ground_truth": "BestPractices brings together emerging technologies and energy-management best practices to help companies begin improving energy efficiency, environmental performance, and productivity right now.",
+    "source_doc": "39156.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_020"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of chilled water plant system versus industrial pumping system?",
+    "ground_truth": "For chilled water plant system (fujifilm_case_study.pdf, p.2): Developing a Baseline The IAC and in-house maintenance team\u2019s first step was to baseline the system\u2019s demand-side air requirements to determine the system\u2019s actual efficiency. For industrial pumping system (test_pumping_system__pumping_systemts4.pdf, p.1): Department of Energy (DOE), and efficiencies of 50% to 60% or lower are quite common.",
+    "source_doc": "fujifilm_case_study.pdf, test_pumping_system__pumping_systemts4.pdf",
+    "source_page": "p.2, p.1",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_021"
+  },
+  {
+    "question": "In the context of the steam distribution system, what specific technical parameter or guidance applies to advanced manufacturing officeprinted?",
+    "ground_truth": "ADVANCED MANUFACTURING OFFICEPrinted with a renewable-source ink on paper containing at least 50% wastepaper, including 10% post consumer waste.The total annual energy savings are strongly dependent upon the facility energy cost and the hours per year of feedwater pump operation.",
+    "source_doc": "steam21_rotating_equip.pdf",
+    "source_page": 2,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_022"
+  },
+  {
+    "question": "In the context of the chilled water plant system, how does implementing proper technical measures affect efficiency in formally recognized plant?",
+    "ground_truth": "In May 2010, ITP formally recognized the plant\u2019s efficiency achievements with an Energy Champion Award.",
+    "source_doc": "fujifilm_case_study.pdf",
+    "source_page": 3,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_023"
+  },
+  {
+    "question": "What are the technical efficiency considerations when comparing management of chilled water plant system versus cement kiln exhaust fan system?",
+    "ground_truth": "For chilled water plant system (fujifilm_case_study.pdf, p.1): Following the assessment, the team formulated an implementation plan that would increase the system\u2019s reliability, reduce system maintenance costs, reduce the facility\u2019s overall energy use, and eliminate the use of nitrogen when compressed air systems are down. For cement kiln exhaust fan system (mi_cs_ashgrove.pdf, p.3): The vibration level caused by the dampers wasreduced from 0.5 inches per second to 0.05 inches per second.",
+    "source_doc": "fujifilm_case_study.pdf, mi_cs_ashgrove.pdf",
+    "source_page": "p.1, p.3",
+    "question_type": "synthesis",
+    "expected_fallback": false,
+    "id": "dev_024"
+  },
+  {
+    "question": "What is the recommended operating pressure for the pump?",
+    "ground_truth": "This query is ambiguous because it does not specify which equipment or system it refers to.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "ambiguous",
+    "expected_fallback": true,
+    "id": "dev_025"
+  },
+  {
+    "question": "In the context of the steam distribution system, how does implementing proper technical measures affect efficiency in steam turbine performance?",
+    "ground_truth": "Steam turbine performance is expressed in terms of isentropic efficiency or steam rate (the steam requirement of the turbine per unit of shaft power produced).",
+    "source_doc": "steam21_rotating_equip.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_026"
+  },
+  {
+    "question": "In the context of the industrial equipment market assessment, what specific technical parameter or guidance applies to energy associated industrial?",
+    "ground_truth": "Add the energy associated with industrial heating, ventilation, and air conditioning systems, and the total jumps to 747 billion kWh or 25% of all electric sales.",
+    "source_doc": "market_assessment_glimpse.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_027"
+  },
+  {
+    "question": "In the context of the metal foundry furnace heat recovery system, how does implementing proper technical measures affect efficiency in project involved retrofitting?",
+    "ground_truth": "The project involved retrofitting the compressed air system with moreappropriately sized compressors, upgrading the compressor controls, and other measures toincrease the system\u2019s efficiency.",
+    "source_doc": "metal_cs_technicast.pdf",
+    "source_page": 1,
+    "question_type": "lookup",
+    "expected_fallback": false,
+    "id": "dev_028"
+  },
+  {
+    "question": "What are the EPA OSHA safety compliance mandates for handling anhydrous ammonia refrigerants in cold storage?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Anhydrous ammonia safety and hazardous chemical regulations are outside the scope of local energy efficiency tip sheets.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "dev_029"
+  },
+  {
+    "question": "How do you diagnose high exhaust gas temperature (EGT) warnings on two-stroke marine propulsion diesel engines?",
+    "ground_truth": "This information is not present in the local DOE equipment tip sheets. Marine diesel propulsion thermodynamics and troubleshooting are not covered in local motor and pump guidance.",
+    "source_doc": null,
+    "source_page": null,
+    "question_type": "unanswerable_locally",
+    "expected_fallback": true,
+    "id": "dev_030"
+  }
+]
