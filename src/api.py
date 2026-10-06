@@ -75,7 +75,7 @@ app = FastAPI(
 # CORS: open for now. Tighten before deploying.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://crag-api-route-punit-09-dev.apps.rm2.thpm.p1.openshiftapps.com"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -146,7 +146,8 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
         return QueryResponse(**hit)
 
     # 2) Rate limit only real pipeline runs
-    client_ip = request.client.host if request.client else "unknown"
+    forwarded_for = request.headers.get("x-forwarded-for")
+    client_ip = forwarded_for.split(",")[0].strip() if forwarded_for else (request.client.host if request.client else "unknown")
     limited = check_rate_limit(client_ip)
     if limited is not None:
         scope, retry_after = limited
