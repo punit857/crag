@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Equipment Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lightweight Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1>Industrial Equipment Advisor</h1>
+                <p>Query the Department of Energy efficiency database</p>
+            </div>
+        </header>
+
+        <main id="chat-box" class="chat-box">
+            <div class="message system">
+                <div class="avatar">⚙️</div>
+                <div class="message-bubble">
+                    <p>Hello. I am connected to the industrial equipment knowledge base. What would you like to know about efficiency, pumping systems, or process control?</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="input-area">
+            <div class="input-wrapper">
+                <textarea id="user-input" placeholder="Type your question here... (Shift+Enter for new line)" rows="1"></textarea>
+                <button id="send-btn" title="Send Query">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -42,37 +42,103 @@ def retrieve_documents(state: CRAGState) -> Dict:
 
 
 def grade_documents(state: CRAGState) -> Dict:
+    query = state["query"]
     docs = state["documents"]
     th_high = config.reranker_threshold_high
     th_low = config.reranker_threshold_low
+    llm = get_llm()
+    trace_logs = []
 
+    # 1. INTENT GUARD: Check for Greetings / Small Talk first
+    # This prevents the system from doing web searches for "hello"
+    try:
+        intent_prompt = PromptTemplate(
+            template="""Classify the following user input. 
+If it is a simple greeting, pleasantry, or conversational small talk (e.g., "hi", "hello", "who are you", "thanks", "good morning"), respond with EXACTLY ONE WORD: GREETING
+If it is a factual question, technical query, or request for information, respond with EXACTLY ONE WORD: FACTUAL
+
+Input: {query}
+Response:""",
+            input_variables=["query"],
+        )
+        intent_chain = intent_prompt | llm
+        intent_response = intent_chain.invoke({"query": query}).content.strip().upper()
+        
+        if "GREETING" in intent_response:
+            # Inject a synthetic document so the Generator knows how to answer
+            synthetic_doc = {
+                "id": "sys_greeting",
+                "text": "System Directive: The user is greeting you or making conversational small talk. Respond warmly, professionally, and briefly. Do not include standard citations for this response.",
+                "doc_name": "System_Logic",
+                "page": 0,
+                "score": 1.0
+            }
+            return {
+                "documents": [synthetic_doc],
+                "web_search_required": False,
+                "execution_trace": ["grade_documents: Query classified as GREETING. Bypassing document retrieval and web search."]
+            }
+    except Exception as e:
+        trace_logs.append(f"Intent guard check failed (falling back to standard RAG): {e}")
+
+    # 2. MATH FILTER: Cross-Encoder Thresholds
     correct_docs = []
     ambiguous_docs = []
-
     for doc in docs:
         score = doc.get("score", -999.0)
         if score >= th_high:
             correct_docs.append(doc)
         elif score >= th_low:
             ambiguous_docs.append(doc)
-        # below th_low: dropped (knowledge refinement)
 
-    has_correct = len(correct_docs) > 0
+    # 3. SEMANTIC GRADER: The "Smart" Check to prevent False Positives
+    # We only spend tokens checking docs that already passed the math filter
+    final_docs = []
+    
+    if correct_docs:
+        grade_prompt = PromptTemplate(
+            template="""You are a strict grading assistant evaluating document relevance.
+
+If the provided document explicitly contains the factual information required to answer the user's query, respond with EXACTLY ONE WORD: YES
+If the document does NOT contain the specific facts to answer the query (even if it shares broad keywords), respond with EXACTLY ONE WORD: NO
+
+Query: {query}
+Document: {document_text}
+
+Response:""",
+            input_variables=["query", "document_text"],
+        )
+        grade_chain = grade_prompt | llm
+        
+        for i, doc in enumerate(correct_docs):
+            try:
+                grade_response = grade_chain.invoke({"query": query, "document_text": doc["text"]}).content.strip().upper()
+                if "YES" in grade_response:
+                    final_docs.append(doc)
+                    trace_logs.append(f"Doc {i+1} Semantic Check: YES")
+                else:
+                    trace_logs.append(f"Doc {i+1} Semantic Check: NO (Dropped as false positive)")
+            except Exception as e:
+                # Failsafe: if LLM fails, trust the math score and keep the doc so the pipeline survives
+                final_docs.append(doc)
+                trace_logs.append(f"Doc {i+1} Semantic Check: ERROR (Kept via failsafe)")
+
+    # 4. ROUTING LOGIC
+    has_correct = len(final_docs) > 0
     web_search_required = not has_correct
 
-    # FIX: if local retrieval is being judged insufficient overall, don't carry
-    # forward ambiguous local noise into the web-augmented context — start
-    # clean so web results aren't diluted by irrelevant local chunks.
-    filtered_docs = correct_docs if has_correct else []
-
+    # We intentionally drop ambiguous docs completely. If local docs fail the semantic check,
+    # we want a completely clean slate for the web search to prevent pollution.
+    
+    summary_trace = (
+        f"grade_documents: Math filter -> {len(correct_docs)} pass, {len(ambiguous_docs)} ambig, {len(docs) - len(correct_docs) - len(ambiguous_docs)} drop. "
+        f"Semantic LLM filter -> {len(final_docs)} verified. Web search required: {web_search_required}"
+    )
+    
     return {
-        "documents": filtered_docs,
+        "documents": final_docs,
         "web_search_required": web_search_required,
-        "execution_trace": [
-            f"grade_documents: {len(correct_docs)} CORRECT, {len(ambiguous_docs)} AMBIGUOUS (dropped), "
-            f"{len(docs) - len(correct_docs) - len(ambiguous_docs)} INCORRECT (dropped). "
-            f"Web search required: {web_search_required}"
-        ]
+        "execution_trace": [summary_trace] + trace_logs
     }
 
 

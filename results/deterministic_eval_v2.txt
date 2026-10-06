@@ -1,0 +1,27 @@
+﻿FACTUAL QUESTIONS  (Y = yes, . = no)
+id       type       key numbers               naive               hybrid              full_crag           
+test_000 lookup     200, 400, 90              ctx=. ans=. ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_002 lookup     102,600                   ctx=. ans=. ref=Y   ctx=. ans=. ref=Y   ctx=. ans=. ref=Y   
+test_004 lookup     7,800, 26, 300            ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_005 synthesis  30%, 16%                  ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_007 lookup     5%, 20%                   ctx=. ans=. ref=Y   ctx=. ans=. ref=Y   ctx=. ans=. ref=Y   
+test_008 synthesis  10,000, 2,200             ctx=Y ans=. ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_009 synthesis  69%, 70%                  ctx=Y ans=. ref=.   ctx=Y ans=. ref=.   ctx=Y ans=. ref=.   
+test_010 lookup     125, 30,000               ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_011 synthesis  105, 120, 100             ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_012 lookup     1%                        ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_014 lookup     790,520, 39,525           ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_015 lookup     30%                       ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+test_016 lookup     415,769, 20,786           ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   ctx=Y ans=Y ref=.   
+
+SUMMARY (factual questions)
+naive      n=13  facts_in_context=10  facts_in_answer=8  refused=2  refused_with_facts_in_context=0  refused_without=2  answered_with_facts_not_in_context=0
+hybrid     n=13  facts_in_context=11  facts_in_answer=10  refused=2  refused_with_facts_in_context=0  refused_without=2  answered_with_facts_not_in_context=0
+full_crag  n=13  facts_in_context=11  facts_in_answer=10  refused=2  refused_with_facts_in_context=0  refused_without=2  answered_with_facts_not_in_context=0
+
+REFUSAL-TYPE QUESTIONS (no score, just behaviour)
+test_001 ambiguous             naive: refused=True web=False | hybrid: refused=True web=False | full_crag: refused=True web=False
+test_003 unanswerable_locally  naive: refused=True web=False | hybrid: refused=True web=False | full_crag: refused=True web=True
+test_006 ambiguous             naive: refused=True web=False | hybrid: refused=False web=False | full_crag: refused=False web=False
+test_013 unanswerable_locally  naive: refused=True web=False | hybrid: refused=True web=False | full_crag: refused=True web=True
+test_017 unanswerable_locally  naive: refused=True web=False | hybrid: refused=True web=False | full_crag: refused=True web=True
