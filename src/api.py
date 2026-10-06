@@ -75,7 +75,7 @@ app = FastAPI(
 # CORS: open for now. Tighten before deploying.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://crag-api-route-punit-09-dev.apps.rm2.thpm.p1.openshiftapps.com"],
+    allow_origins=["https://crag-api-route-punit-09-dev.apps.rm2.thpm.p1.openshiftapps.com", "http://localhost:3000"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
