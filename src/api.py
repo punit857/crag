@@ -1,13 +1,11 @@
 """
-src/api.py — Phase 6: FastAPI wrapper around the CRAG pipeline.
+src/api.py - Phase 6: FastAPI wrapper around the CRAG pipeline.
 
-Builds the CRAG graph ONCE at startup (not per-request — graph construction
+Builds the CRAG graph ONCE at startup (not per-request - graph construction
 loads embedding/reranker models, which is slow and must not repeat per call).
 Exposes:
-  POST /query   — run a question through the full CRAG pipeline
-  GET  /health  — liveness check
-
-Run with uvicorn (see step-by-step instructions after this file).
+  POST /query   - run a question through the full CRAG pipeline
+  GET  /health  - liveness check
 """
 
 import logging
@@ -22,17 +20,17 @@ from pydantic import BaseModel, Field, field_validator
 from src.config import config
 from src.graph.build_graph import build_crag_graph
 from src.graph.nodes import retriever
-from src.cache import make_key, get_cached, set_cached
+from src.cache import make_key, get_cached, set_cached, is_cacheable, set_corpus_fingerprint
 from src.ratelimit import check_rate_limit
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("crag_api")
 
-MAX_QUERY_LENGTH = 2000  # defensive cap — not from config, just basic input hygiene
+MAX_QUERY_LENGTH = 2000  # defensive cap - not from config, just basic input hygiene
 
 
 # --------------------------------------------------------------------------- #
-# App state — the compiled graph lives here, built once at startup
+# App state - the compiled graph lives here, built once at startup
 # --------------------------------------------------------------------------- #
 class AppState:
     graph = None
@@ -56,6 +54,13 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.warning(f"Warm-up failed (non-fatal): {e}")
 
+    # Cache corpus fingerprint: never allowed to stop the API from starting.
+    try:
+        fp = set_corpus_fingerprint(retriever.all_chunks)
+        logger.info(f"Cache corpus fingerprint: {fp} ({len(retriever.all_chunks)} chunks)")
+    except Exception as e:
+        logger.warning(f"Corpus fingerprint failed (non-fatal; cache keys use 'unset'): {type(e).__name__}: {e}")
+
     yield
     logger.info("Shutting down.")
 
@@ -67,7 +72,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS: open for now (no frontend built yet — Phase 7). Tighten before deploying (Phase 8).
+# CORS: open for now. Tighten before deploying.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -87,9 +92,7 @@ class QueryRequest(BaseModel):
     def query_not_blank(cls, v: str) -> str:
         if not v.strip():
             raise ValueError("query cannot be empty or whitespace-only")
-         
         return v.strip()
-        
 
 
 class SourceInfo(BaseModel):
@@ -200,7 +203,7 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
         node_timings=final_state.get("node_timings", []),
     )
 
-    if response.answer.strip():  # never cache empty answers
+    if is_cacheable(response.answer):  # never cache empty answers, refusals or "unverified" answers
         set_cached(cache_key, response.model_dump(), response.web_search_used)
 
     logger.info(f"Query completed in {latency:.1f}s, web_used={response.web_search_used}")
