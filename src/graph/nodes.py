@@ -7,7 +7,6 @@ from src.config import config
 from src.graph.state import CRAGState
 from src.retrieval import Retriever
 
-# Initialize retriever globally so we don't reload embeddings/models on every run
 retriever = Retriever()
 
 def get_llm():
@@ -33,24 +32,32 @@ def get_llm():
 
 def retrieve_documents(state: CRAGState) -> Dict:
     query = state["query"]
-    # We use the existing reranked hybrid search method
-    docs = retriever.reranked_hybrid_search(query, top_k=5)
+    skip_reranker = state.get("skip_reranker", False)
+    session_id = state.get("session_id")
+
+    if skip_reranker:
+        docs = retriever.hybrid_search(query, top_k=5, session_id=session_id)
+        trace_msg = "retrieve_documents: Local hybrid retrieval (Cross-encoder bypassed)"
+    else:
+        docs = retriever.reranked_hybrid_search(query, top_k=5, session_id=session_id)
+        trace_msg = "retrieve_documents: Local hybrid retrieval (Cross-encoder reranked)"
+
     return {
         "documents": docs,
-        "execution_trace": ["retrieve_documents: Executed local hybrid retrieval"]
+        "execution_trace": [trace_msg]
     }
 
 
 def grade_documents(state: CRAGState) -> Dict:
     query = state["query"]
     docs = state["documents"]
+    skip_reranker = state.get("skip_reranker", False)
     th_high = config.reranker_threshold_high
     th_low = config.reranker_threshold_low
     llm = get_llm()
     trace_logs = []
 
-    # 1. INTENT GUARD: Check for Greetings / Small Talk first
-    # This prevents the system from doing web searches for "hello"
+    # 1. INTENT GUARD: Small Talk bypass
     try:
         intent_prompt = PromptTemplate(
             template="""Classify the following user input. 
@@ -65,7 +72,6 @@ Response:""",
         intent_response = intent_chain.invoke({"query": query}).content.strip().upper()
         
         if "GREETING" in intent_response:
-            # Inject a synthetic document so the Generator knows how to answer
             synthetic_doc = {
                 "id": "sys_greeting",
                 "text": "System Directive: The user is greeting you or making conversational small talk. Respond warmly, professionally, and briefly. Do not include standard citations for this response.",
@@ -81,20 +87,24 @@ Response:""",
     except Exception as e:
         trace_logs.append(f"Intent guard check failed (falling back to standard RAG): {e}")
 
-    # 2. MATH FILTER: Cross-Encoder Thresholds
-    correct_docs = []
-    ambiguous_docs = []
-    for doc in docs:
-        score = doc.get("score", -999.0)
-        if score >= th_high:
-            correct_docs.append(doc)
-        elif score >= th_low:
-            ambiguous_docs.append(doc)
+    # 2. FILTERING STAGE: Differentiate between cross-encoder logits and RRF scores
+    if skip_reranker:
+        # Reranker skipped: RRF scores are small (~0.02); send top 3 directly to LLM filter
+        correct_docs = docs[:3]
+        filter_summary = f"grade_documents: Reranker skipped -> sending top {len(correct_docs)} docs to Semantic Grader."
+    else:
+        correct_docs = []
+        ambiguous_docs = []
+        for doc in docs:
+            score = doc.get("score", -999.0)
+            if score >= th_high:
+                correct_docs.append(doc)
+            elif score >= th_low:
+                ambiguous_docs.append(doc)
+        filter_summary = f"grade_documents: Math filter -> {len(correct_docs)} pass, {len(ambiguous_docs)} ambig, {len(docs) - len(correct_docs) - len(ambiguous_docs)} drop."
 
-    # 3. SEMANTIC GRADER: The "Smart" Check to prevent False Positives
-    # We only spend tokens checking docs that already passed the math filter
+    # 3. SEMANTIC GRADER: Validate candidate factual relevance
     final_docs = []
-    
     if correct_docs:
         grade_prompt = PromptTemplate(
             template="""You are a strict grading assistant evaluating document relevance.
@@ -119,7 +129,6 @@ Response:""",
                 else:
                     trace_logs.append(f"Doc {i+1} Semantic Check: NO (Dropped as false positive)")
             except Exception as e:
-                # Failsafe: if LLM fails, trust the math score and keep the doc so the pipeline survives
                 final_docs.append(doc)
                 trace_logs.append(f"Doc {i+1} Semantic Check: ERROR (Kept via failsafe)")
 
@@ -127,13 +136,7 @@ Response:""",
     has_correct = len(final_docs) > 0
     web_search_required = not has_correct
 
-    # We intentionally drop ambiguous docs completely. If local docs fail the semantic check,
-    # we want a completely clean slate for the web search to prevent pollution.
-    
-    summary_trace = (
-        f"grade_documents: Math filter -> {len(correct_docs)} pass, {len(ambiguous_docs)} ambig, {len(docs) - len(correct_docs) - len(ambiguous_docs)} drop. "
-        f"Semantic LLM filter -> {len(final_docs)} verified. Web search required: {web_search_required}"
-    )
+    summary_trace = f"{filter_summary} Semantic LLM filter -> {len(final_docs)} verified. Web search required: {web_search_required}"
     
     return {
         "documents": final_docs,
@@ -165,25 +168,39 @@ Original Query: {query}""",
         "execution_trace": [f"rewrite_query: Rewrote query to -> '{rewritten_query}'"]
     }
 
+
 def web_search(state: CRAGState) -> Dict:
     query = state["query"]
-    docs = state["documents"]
+    docs = state.get("documents", [])
     iters = state.get("web_search_iterations", 0)
+    mode = state.get("web_search_mode", "default")
+    custom = state.get("custom_domains", [])
     
     if "TAVILY_API_KEY" not in os.environ and config.tavily_api_key:
         os.environ["TAVILY_API_KEY"] = config.tavily_api_key
 
-    search_tool = TavilySearchResults(
-        max_results=3, 
-        include_domains=config.allowed_web_domains
-    )
+    # Resolve target domains
+    if mode == "open":
+        target_domains = None
+        domain_label = "Open Web (unrestricted)"
+    elif mode == "custom" and custom:
+        target_domains = [d.replace("https://", "").replace("http://", "").strip("/") for d in custom if d.strip()]
+        domain_label = f"Custom domains ({', '.join(target_domains)})"
+    else:
+        target_domains = config.allowed_web_domains
+        domain_label = f"Default domains ({', '.join(config.allowed_web_domains)})"
+
+    search_kwargs: Dict[str, Any] = {"max_results": 3}
+    if target_domains:
+        search_kwargs["include_domains"] = target_domains
+
+    search_tool = TavilySearchResults(**search_kwargs)
     
     try:
         web_results = search_tool.invoke({"query": query})
         
-        # Defensive parsing against unexpected string returns
         if isinstance(web_results, str):
-            trace_msg = f"web_search: Search failed/returned error message: {web_results}"
+            trace_msg = f"web_search ({domain_label}): Search error: {web_results}"
         elif isinstance(web_results, list):
             valid_results = 0
             for res in web_results:
@@ -196,12 +213,12 @@ def web_search(state: CRAGState) -> Dict:
                         "score": 1.0
                     })
                     valid_results += 1
-            trace_msg = f"web_search: Retrieved {valid_results} valid documents from allowed domains."
+            trace_msg = f"web_search ({domain_label}): Retrieved {valid_results} valid results."
         else:
-            trace_msg = f"web_search: Unexpected response format from Tavily: {type(web_results)}"
+            trace_msg = f"web_search ({domain_label}): Unexpected response format: {type(web_results)}"
             
     except Exception as e:
-        trace_msg = f"web_search: Search failed with exception: {e}"
+        trace_msg = f"web_search ({domain_label}): Search failed: {e}"
 
     return {
         "documents": docs,
@@ -216,7 +233,7 @@ def generate_answer(state: CRAGState) -> Dict:
     iters = state.get("generation_iterations", 0)
     llm = get_llm()
     
-    context = "\n\n".join([f"[Source: {d.get('doc_name', 'Unknown')}, Page: {d.get('page', 0)}] {d['text']}" for d in docs])
+    context = "\n\n".join([f" {d['text']}" for d in docs])
     
     prompt = PromptTemplate(
         template="""You are a technical assistant for industrial equipment. 
@@ -270,9 +287,6 @@ Respond with EXACTLY ONE WORD: "YES" (if all claims are supported/reasonably inf
     chain = prompt | llm
     raw_response = chain.invoke({"context": context, "generation": generation})
     
-    # print(f"[DEBUG] finish_reason: {raw_response.response_metadata.get('finish_reason')}")
-    # print(f"[DEBUG] token_usage: {raw_response.response_metadata.get('token_usage')}")
-    
     result = raw_response.content.strip().upper()
     cleaned = ''.join(c for c in result if c.isalpha())
 
@@ -283,11 +297,8 @@ Respond with EXACTLY ONE WORD: "YES" (if all claims are supported/reasonably inf
         grounded = False
         verdict_note = "NO"
     else:
-        # FIX: malformed/empty response is NOT a confirmed hallucination finding —
-        # log it distinctly rather than silently treating it as a real "NO".
         grounded = False
         verdict_note = f"MALFORMED_RESPONSE(raw={raw_response!r})"
-        # print(f"[WARNING] check_groundedness got an unparseable response: {raw_response!r}")
 
     final_generation = generation
     if not grounded and iters >= 2:

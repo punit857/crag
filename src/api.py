@@ -1,13 +1,3 @@
-"""
-src/api.py - Phase 6: FastAPI wrapper around the CRAG pipeline.
-
-Builds the CRAG graph ONCE at startup (not per-request - graph construction
-loads embedding/reranker models, which is slow and must not repeat per call).
-Exposes:
-  POST /query   - run a question through the full CRAG pipeline
-  GET  /health  - liveness check
-"""
-
 import logging
 import time
 from contextlib import asynccontextmanager
@@ -26,18 +16,12 @@ from src.ratelimit import check_rate_limit
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("crag_api")
 
-MAX_QUERY_LENGTH = 2000  # defensive cap - not from config, just basic input hygiene
+MAX_QUERY_LENGTH = 2000
 
-
-# --------------------------------------------------------------------------- #
-# App state - the compiled graph lives here, built once at startup
-# --------------------------------------------------------------------------- #
 class AppState:
     graph = None
 
-
 app_state = AppState()
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -46,20 +30,18 @@ async def lifespan(app: FastAPI):
     app_state.graph = build_crag_graph()
     logger.info(f"CRAG graph ready in {time.perf_counter() - start:.1f}s.")
 
-    # Warm-up: retrieval only (no LLM call, so no Groq tokens are spent).
     try:
         t = time.perf_counter()
         retriever.reranked_hybrid_search("warm-up query", top_k=1)
-        logger.info(f"Retrieval warm-up done in {time.perf_counter() - t:.1f}s.")
+        logger.info(f"Retrieval warm-up completed in {time.perf_counter() - t:.1f}s.")
     except Exception as e:
         logger.warning(f"Warm-up failed (non-fatal): {e}")
 
-    # Cache corpus fingerprint: never allowed to stop the API from starting.
     try:
         fp = set_corpus_fingerprint(retriever.all_chunks)
         logger.info(f"Cache corpus fingerprint: {fp} ({len(retriever.all_chunks)} chunks)")
     except Exception as e:
-        logger.warning(f"Corpus fingerprint failed (non-fatal; cache keys use 'unset'): {type(e).__name__}: {e}")
+        logger.warning(f"Corpus fingerprint failed (non-fatal): {e}")
 
     yield
     logger.info("Shutting down.")
@@ -67,25 +49,29 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Industrial Equipment CRAG API",
-    description="Corrective RAG workflow over DOE industrial equipment efficiency documents.",
-    version="1.0.0",
+    description="Corrective RAG workflow with dynamic web modes and document controls.",
+    version="1.1.0",
     lifespan=lifespan,
 )
 
-# CORS: open for now. Tighten before deploying.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://crag-api-route-punit-09-dev.apps.rm2.thpm.p1.openshiftapps.com", "http://localhost:3000"],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
 # --------------------------------------------------------------------------- #
-# Request / response schemas
+# Schemas
 # --------------------------------------------------------------------------- #
 class QueryRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=MAX_QUERY_LENGTH)
+    skip_reranker: bool = Field(default=False)
+    web_search_mode: str = Field(default="default")  # "default", "custom", or "open"
+    custom_domains: List[str] = Field(default_factory=list)
+    session_id: Optional[str] = Field(default=None)
+    bypass_cache: bool = Field(default=False)
 
     @field_validator("query")
     @classmethod
@@ -94,13 +80,20 @@ class QueryRequest(BaseModel):
             raise ValueError("query cannot be empty or whitespace-only")
         return v.strip()
 
+    @field_validator("web_search_mode")
+    @classmethod
+    def validate_mode(cls, v: str) -> str:
+        allowed = ["default", "custom", "open"]
+        if v not in allowed:
+            raise ValueError(f"web_search_mode must be one of {allowed}")
+        return v
+
 
 class SourceInfo(BaseModel):
     doc_name: str
     page: Optional[int] = None
     score: Optional[float] = None
     is_web: bool
-
 
 class QueryResponse(BaseModel):
     answer: str
@@ -111,18 +104,16 @@ class QueryResponse(BaseModel):
     cached: bool = False
     node_timings: List[Dict[str, Any]] = []
 
-
 class ErrorResponse(BaseModel):
     error: str
     detail: str
 
 
 # --------------------------------------------------------------------------- #
-# Routes
+# Pipeline Routes
 # --------------------------------------------------------------------------- #
 @app.get("/health")
 def health() -> Dict[str, str]:
-    """Liveness check. Confirms the graph is built and ready, not just that the server is up."""
     if app_state.graph is None:
         raise HTTPException(status_code=503, detail="Graph not yet initialized.")
     return {"status": "ok"}
@@ -133,35 +124,40 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
     if app_state.graph is None:
         raise HTTPException(status_code=503, detail="Graph not yet initialized.")
 
-    logger.info(f"Query received: {req.query[:100]}...")
     start = time.perf_counter()
 
-    # 1) Cache first: hits cost no tokens and are never rate-limited
-    cache_key = make_key(req.query)
-    hit = get_cached(cache_key)
-    if hit is not None:
-        hit["cached"] = True
-        hit["latency_seconds"] = round(time.perf_counter() - start, 3)
-        logger.info(f"Cache HIT in {hit['latency_seconds']}s")
-        return QueryResponse(**hit)
+    # 1. Distinct cache key including all operational parameters
+    domain_str = ",".join(sorted(req.custom_domains))
+    cache_raw = f"{req.query}|{req.skip_reranker}|{req.web_search_mode}|{domain_str}|{req.session_id or ''}"
+    cache_key = make_key(cache_raw)
 
-    # 2) Rate limit only real pipeline runs
+    if not req.bypass_cache:
+        hit = get_cached(cache_key)
+        if hit is not None:
+            hit["cached"] = True
+            hit["latency_seconds"] = round(time.perf_counter() - start, 3)
+            logger.info(f"Cache HIT in {hit['latency_seconds']}s")
+            return QueryResponse(**hit)
+
+    # 2. Rate limiting check
     forwarded_for = request.headers.get("x-forwarded-for")
     client_ip = forwarded_for.split(",")[0].strip() if forwarded_for else (request.client.host if request.client else "unknown")
     limited = check_rate_limit(client_ip)
     if limited is not None:
         scope, retry_after = limited
-        logger.warning(f"Rate limit hit (scope={scope}) for {client_ip}")
         raise HTTPException(
             status_code=429,
-            detail="Rate limit reached. Please retry shortly." if scope == "ip"
-            else "Daily capacity for this demo has been reached. Please try again tomorrow.",
+            detail="Rate limit reached." if scope == "ip" else "Daily capacity reached.",
             headers={"Retry-After": str(retry_after)},
         )
 
-    # 3) Run the pipeline
+    # 3. Graph execution
     initial_state: Dict[str, Any] = {
         "query": req.query,
+        "skip_reranker": req.skip_reranker,
+        "web_search_mode": req.web_search_mode,
+        "custom_domains": req.custom_domains,
+        "session_id": req.session_id,
         "documents": [],
         "web_search_required": False,
         "web_search_iterations": 0,
@@ -176,11 +172,8 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
         final_state = app_state.graph.invoke(initial_state)
     except Exception as e:
         latency = time.perf_counter() - start
-        logger.error(f"Graph execution failed after {latency:.1f}s: {e}")  # full detail stays in server logs only
-        msg = str(e)
-        if "429" in msg or "rate limit" in msg.lower():
-            raise HTTPException(status_code=429, detail="The language model is rate-limited right now. Please retry shortly.")
-        raise HTTPException(status_code=500, detail="Pipeline execution failed. See server logs.")
+        logger.error(f"Graph execution failed: {e}")
+        raise HTTPException(status_code=500, detail="Pipeline execution failed.")
 
     latency = time.perf_counter() - start
 
@@ -204,8 +197,23 @@ def query(req: QueryRequest, request: Request) -> QueryResponse:
         node_timings=final_state.get("node_timings", []),
     )
 
-    if is_cacheable(response.answer):  # never cache empty answers, refusals or "unverified" answers
+    if not req.bypass_cache and is_cacheable(response.answer):
         set_cached(cache_key, response.model_dump(), response.web_search_used)
 
-    logger.info(f"Query completed in {latency:.1f}s, web_used={response.web_search_used}")
     return response
+
+
+# --------------------------------------------------------------------------- #
+# KB Management Routes
+# --------------------------------------------------------------------------- #
+@app.get("/kb/documents")
+def get_kb_catalog():
+    """Returns all base industrial documents and their chunk counts."""
+    return {"scope": "base", "documents": retriever.list_documents(scope="base")}
+
+
+@app.delete("/kb/documents/{doc_name}")
+def delete_kb_document(doc_name: str):
+    """Surgically deletes a single document by filename without affecting others."""
+    retriever.delete_document(doc_name=doc_name, scope="base")
+    return {"status": "success", "deleted_document": doc_name}
