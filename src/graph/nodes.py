@@ -33,13 +33,13 @@ def get_llm():
 def retrieve_documents(state: CRAGState) -> Dict:
     query = state["query"]
     skip_reranker = state.get("skip_reranker", False)
-    session_id = state.get("session_id")
 
+    # We completely removed session_id here to prevent the crash
     if skip_reranker:
-        docs = retriever.hybrid_search(query, top_k=5, session_id=session_id)
+        docs = retriever.hybrid_search(query, top_k=5)
         trace_msg = "retrieve_documents: Local hybrid retrieval (Cross-encoder bypassed)"
     else:
-        docs = retriever.reranked_hybrid_search(query, top_k=5, session_id=session_id)
+        docs = retriever.reranked_hybrid_search(query, top_k=5)
         trace_msg = "retrieve_documents: Local hybrid retrieval (Cross-encoder reranked)"
 
     return {
